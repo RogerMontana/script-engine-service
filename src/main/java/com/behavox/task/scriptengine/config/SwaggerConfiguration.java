@@ -30,13 +30,14 @@ public class SwaggerConfiguration {
         return new ApiInfo(
                 "Script Execution Service",
                 "Service can execute script-function in Javascript or Groovy \n" +
+                        "Login: admin or user, password: pass \n" +
                         "Set flag for language:\n engine.groovy=true\n" +
                         "engine.javascript=false \n" +
                         "All results persisted in DB, in case of same execution it will get result from db \n" +
-                        "DB console http://localhost:8080/h2-console/ \n",
+                        "DB console(creds: sa,password) http://localhost:8080/h2-console/ (avalible under admin)\n",
                 "API v1",
                 "",
-                new Contact("Artem Karpov", "www.example.com", "artem.karpov@yahoo.com"),
+                new Contact("Artem Karpov", "https://www.linkedin.com/in/artem-karpov-02b4225b/", "artem.karpov@yahoo.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
 }

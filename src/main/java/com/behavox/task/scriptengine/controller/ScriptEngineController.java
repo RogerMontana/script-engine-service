@@ -14,7 +14,6 @@ import javax.script.ScriptException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,7 +37,7 @@ public class ScriptEngineController {
     public ResponseEntity<List<ExecutionResultDTO>> evalBatchResult(@RequestBody List<InputDto> inputDtos) throws ScriptException, NoSuchMethodException {
         log.debug("Received Request with Batch Input {}", inputDtos);
         List<ExecutionResultDTO> result = new ArrayList<>();
-        for (InputDto input:inputDtos) {
+        for (InputDto input : inputDtos) {
             result.add(evalResult(input));
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
