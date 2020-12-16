@@ -3,7 +3,8 @@ actor Client
 database Database
 
 Client -> ScriptService: Authentication Request
-ScriptService --> Client: Authentication Response
+ScriptService --> Database: Check Roles username and pass
+ScriptService --> Client: Authentication Response(redirect swagger page)
 
 Client -> ScriptService: Script Execution Request
 ScriptService --> Database: check results
