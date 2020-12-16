@@ -1,0 +1,31 @@
+@startuml
+@startuml
+
+package "API GATEWAY" {
+  HTTP - [Load Balancer]
+}
+cloud {
+node "Backend Service Node 1" {
+  HTTP_API - [Script Execution Service]
+  [Load Balancer] --> HTTP_API
+}
+
+database "Database" {
+  frame "EXECUTION_RESULTS" {
+    [Script execution entry]
+  }
+}
+node "Backend Service Node 2" {
+  HTTP_API2 - [Script Execution Service2]
+  [Load Balancer] --> HTTP_API2
+}
+
+}
+
+[Script Execution Service] --> [Script execution entry]
+[Script Execution Service2] --> [Script execution entry]
+
+
+@enduml
+
+@enduml

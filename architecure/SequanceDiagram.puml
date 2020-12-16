@@ -1,0 +1,19 @@
+@startuml
+actor Client
+database Database
+
+Client -> ScriptService: Authentication Request
+ScriptService --> Client: Authentication Response
+
+Client -> ScriptService: Script Execution Request
+ScriptService --> Database: check results
+alt no previous executions case
+    ScriptService --> ScriptService: execute script
+    ScriptService --> Database: save results
+end
+ScriptService --> Database: get results
+Database --> ScriptService: return results
+Client <-- ScriptService: Execution Results
+
+database Database
+@enduml
