@@ -14,7 +14,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfiguration {
 
     @Bean
     public Docket api() {
@@ -28,10 +28,13 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Groovy Execution Service",
-                "TO BE DONE custom description of API.",
-                "API TOS",
-                "Terms of service",
+                "Script Execution Service",
+                "Service can execute script-function in Javascript or Groovy \n" +
+                        "Set flag for language:\n engine.groovy=true\n" +
+                        "engine.javascript=false \n" +
+                        "All results persisted in DB, in case of same execution it will get result from db",
+                "API v1",
+                "DB console http://localhost:8080/h2-console/",
                 new Contact("Artem Karpov", "www.example.com", "artem.karpov@yahoo.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }

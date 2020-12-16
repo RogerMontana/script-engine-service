@@ -1,4 +1,4 @@
-package com.behavox.task.scriptengine.controller;
+package com.behavox.task.scriptengine.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

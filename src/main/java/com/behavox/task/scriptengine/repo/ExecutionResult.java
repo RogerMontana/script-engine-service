@@ -12,15 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="CalculatedResults")
+@Table(name="EXECUTION_RESULTS")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CalculationResult {
+public class ExecutionResult {
 
         @Id
         @Column(name = "hash", nullable = false)
         private Long hash;
+
+        @Column(name = "script_name", length = 256, nullable = false)
+        private String scriptName;
 
         @Column(name = "script", length = 256, nullable = false)
         private String script;

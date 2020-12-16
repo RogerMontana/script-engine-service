@@ -1,6 +1,7 @@
 package com.behavox.task.scriptengine.service;
 
-import com.behavox.task.scriptengine.repo.CalculationResult;
+import com.behavox.task.scriptengine.dto.InputDto;
+import com.behavox.task.scriptengine.repo.ExecutionResult;
 import com.behavox.task.scriptengine.repo.ScriptRepositoryResults;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import javax.transaction.Transactional;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -19,33 +20,37 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ScriptService {
     private final ScriptEngine engine;
     private final ScriptRepositoryResults repositoryResults;
-    private final Map<Integer, String> resultMap = new ConcurrentHashMap<>();
 
-    public String eval(Input input) throws ScriptException, NoSuchMethodException {
+    @Transactional
+    public String eval(InputDto inputDto) throws ScriptException, NoSuchMethodException {
+        var hashCode = inputDto.getDBHash();
+        log.debug("Hash for an input {}", hashCode);
 
-        var hashCode = input.getDBHash();
-        log.info("Hash {}", hashCode);
-
-        if (repositoryResults.existsByHash(hashCode)) {
-            String res = repositoryResults.findByHash(hashCode).getResult();
-            log.info("results in DB key {}, val {}", hashCode, res);
-            return res;
+        Optional<ExecutionResult> calculationResult = repositoryResults.findByHash(hashCode);
+        if (calculationResult.isPresent()) {
+            String result = calculationResult.get().getResult();
+            log.info("results in DB key {}, val {}", hashCode, result);
+            return result;
         }
-        Object result = runOnEngine(input);
+        Object result = runOnEngine(inputDto);
         String res = String.valueOf(result);
-        repositoryResults.save(buildCalculationResultEntity(input, hashCode, res));
+        repositoryResults.save(buildCalculationResultEntity(inputDto, hashCode, res));
         return res;
     }
 
-    private CalculationResult buildCalculationResultEntity(Input input, long hashCode, String res) {
-        return new CalculationResult(hashCode, input.getFunctionPayload().trim(), Arrays.toString(input.getFunctionArgs()), res);
+    private ExecutionResult buildCalculationResultEntity(InputDto inputDto, long hashCode, String res) {
+        return new ExecutionResult(hashCode,
+                inputDto.getFunctionName(),
+                inputDto.getFunctionPayload().trim(),
+                Arrays.toString(inputDto.getFunctionArgs()),
+                res);
     }
 
-    private Object runOnEngine(Input input) throws ScriptException, NoSuchMethodException {
-        engine.eval(input.getFunctionPayload());
+    private Object runOnEngine(InputDto inputDto) throws ScriptException, NoSuchMethodException {
+        engine.eval(inputDto.getFunctionPayload());
         Invocable inv = (Invocable) engine;
-        Object result = inv.invokeFunction(input.getFunctionName(), input.getFunctionArgs());
-        log.info("results going to be calculated from Input {}, result {}", input, result);
+        Object result = inv.invokeFunction(inputDto.getFunctionName(), inputDto.getFunctionArgs());
+        log.info("results going to be calculated from Input {}, result {}", inputDto, result);
         return result;
     }
 

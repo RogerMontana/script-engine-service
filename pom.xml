@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>11</java.version>
+        <swagger.version>2.9.2</swagger.version>
+        <groovy-jsr.version>3.0.7</groovy-jsr.version>
     </properties>
 
     <dependencies>
@@ -34,17 +36,17 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-jsr223</artifactId>
-            <version>3.0.7</version>
+            <version>${groovy-jsr.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
 
         <dependency>
