@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
+//TODO Should be moved to separate service if we want to follow microservice architecture
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -41,13 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                     .logout().logoutSuccessUrl("/login");
 
-            //NEED for DEMO pupouse
+            //NEED for DEMO purpose
             http.csrf()
                     .ignoringAntMatchers("/h2-console/**");
             http.headers()
                     .frameOptions()
                     .sameOrigin();
-            //NEED for DEMO pupouse
+            //NEED for DEMO purpose
             http.csrf()
                     .ignoringAntMatchers("/api/v1/engine/**");
             http.headers()
