@@ -143,13 +143,14 @@ public class BehavoxScriptEngineApplicationTests {
                 .andExpect(content()
                         .json(
                                 objectMapper.writeValueAsString(
-                                        Arrays.asList(
+                                        Collections.singletonList(
                                                 new ExecutionResultDTO(FUNCTION_PAYLOAD,
                                                         Collections.singletonList(3).toString(),
                                                         String.valueOf(2))
                                         )
                                 )
                         )
-                );;
+                );
+        ;
     }
 }
