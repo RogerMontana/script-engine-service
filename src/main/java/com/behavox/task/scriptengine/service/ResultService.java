@@ -1,7 +1,7 @@
 package com.behavox.task.scriptengine.service;
 
 import com.behavox.task.scriptengine.dto.ExecutionResultDTO;
-import com.behavox.task.scriptengine.repo.ScriptRepositoryResults;
+import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ResultHistoService {
-    private final ScriptRepositoryResults repositoryResults;
+public class ResultService {
+    private final ScriptExecutionResultRepository repositoryResults;
 
     @Transactional(readOnly = true)
     public List<ExecutionResultDTO> getAllResultsByScriptName(String scriptName) {

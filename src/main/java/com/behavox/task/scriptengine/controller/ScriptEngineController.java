@@ -2,8 +2,8 @@ package com.behavox.task.scriptengine.controller;
 
 import com.behavox.task.scriptengine.dto.ExecutionResultDTO;
 import com.behavox.task.scriptengine.dto.InputDto;
-import com.behavox.task.scriptengine.service.ResultHistoService;
-import com.behavox.task.scriptengine.service.ScriptService;
+import com.behavox.task.scriptengine.service.ResultService;
+import com.behavox.task.scriptengine.service.ScriptExecutionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,24 +21,24 @@ import java.util.List;
 @Slf4j
 public class ScriptEngineController {
 
-    private final ScriptService scriptService;
-    private final ResultHistoService histoService;
+    private final ScriptExecutionService scriptExecutionService;
+    private final ResultService histoService;
 
-    @PostMapping("/eval")
-    public ExecutionResultDTO evalResult(@RequestBody InputDto inputDto) throws ScriptException, NoSuchMethodException {
+    @PostMapping("/evalOne")
+    public ExecutionResultDTO evalOne(@RequestBody InputDto inputDto) throws ScriptException, NoSuchMethodException {
         log.debug("Received Request with Input {}", inputDto);
-        var result = scriptService.eval(inputDto);
+        var result = scriptExecutionService.eval(inputDto);
         return new ExecutionResultDTO(inputDto.getFunctionPayload(),
                 Arrays.toString(inputDto.getFunctionArgs()),
                 result);
     }
 
-    @PostMapping("/evalBatch")
-    public ResponseEntity<List<ExecutionResultDTO>> evalBatchResult(@RequestBody List<InputDto> inputDtos) throws ScriptException, NoSuchMethodException {
+    @PostMapping("/evalMany")
+    public ResponseEntity<List<ExecutionResultDTO>> evalMany(@RequestBody List<InputDto> inputDtos) throws ScriptException, NoSuchMethodException {
         log.debug("Received Request with Batch Input {}", inputDtos);
         List<ExecutionResultDTO> result = new ArrayList<>();
         for (InputDto input : inputDtos) {
-            result.add(evalResult(input));
+            result.add(evalOne(input));
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

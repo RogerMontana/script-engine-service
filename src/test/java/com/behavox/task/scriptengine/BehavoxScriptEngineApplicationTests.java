@@ -30,13 +30,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BehavoxScriptEngineApplication.class)
 @AutoConfigureMockMvc
-public class BehavoxScriptEngineApplicationTests {
-
-    public static final String FUNCTION_NAME = "fib";
-    public static final String FUNCTION_PAYLOAD = "def fib(n) { n < 2 ? n : fib(n - 2) + fib(n - 1) }";
-    public static final Object[] ARGS = new Object[]{3};
-    public static final Object[] ARGS_2 = new Object[]{4};
-    public static final Object[] ARGS_3 = new Object[]{5};
+public class BehavoxScriptEngineApplicationTests extends TestConstants {
 
     private MockMvc mvc;
 
@@ -63,19 +57,16 @@ public class BehavoxScriptEngineApplicationTests {
     @Test
     @WithMockUser("user")
     public void shouldRunSingleScriptPayload() throws Exception {
-        Object[] args = {3};
-        String functionPayload = "def fib(n) { n < 2 ? n : fib(n - 2) + fib(n - 1) }";
-        String functionName = "fib";
 
-        mvc.perform(post("/api/v1/engine/eval")
+        mvc.perform(post("/api/v1/engine/evalOne")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new InputDto(functionName,
-                        functionPayload,
-                        args))))
+                .content(objectMapper.writeValueAsString(new InputDto(FUNCTION_NAME_FIB,
+                        FUNCTION_PAYLOAD_FIB,
+                        ARGS))))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().json(objectMapper.writeValueAsString(
-                        new ExecutionResultDTO(functionPayload,
+                        new ExecutionResultDTO(FUNCTION_PAYLOAD_FIB,
                                 Collections.singletonList(3).toString(),
                                 String.valueOf(2)))
                         )
@@ -87,18 +78,18 @@ public class BehavoxScriptEngineApplicationTests {
     @WithMockUser("user")
     public void shouldExecuteBatchPayload() throws Exception {
 
-        var input1 = new InputDto(FUNCTION_NAME,
-                FUNCTION_PAYLOAD,
+        var input1 = new InputDto(FUNCTION_NAME_FIB,
+                FUNCTION_PAYLOAD_FIB,
                 ARGS);
-        var input2 = new InputDto(FUNCTION_NAME,
-                FUNCTION_PAYLOAD,
+        var input2 = new InputDto(FUNCTION_NAME_FIB,
+                FUNCTION_PAYLOAD_FIB,
                 ARGS_2);
-        var input3 = new InputDto(FUNCTION_NAME,
-                FUNCTION_PAYLOAD,
+        var input3 = new InputDto(FUNCTION_NAME_FIB,
+                FUNCTION_PAYLOAD_FIB,
                 ARGS_3);
 
 
-        mvc.perform(post("/api/v1/engine/evalBatch")
+        mvc.perform(post("/api/v1/engine/evalMany")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(Arrays.asList(input1, input2, input3))))
                 .andDo(print())
@@ -107,13 +98,13 @@ public class BehavoxScriptEngineApplicationTests {
                         .json(
                                 objectMapper.writeValueAsString(
                                         Arrays.asList(
-                                                new ExecutionResultDTO(FUNCTION_PAYLOAD,
+                                                new ExecutionResultDTO(FUNCTION_PAYLOAD_FIB,
                                                         Collections.singletonList(3).toString(),
                                                         String.valueOf(2)),
-                                                new ExecutionResultDTO(FUNCTION_PAYLOAD,
+                                                new ExecutionResultDTO(FUNCTION_PAYLOAD_FIB,
                                                         Collections.singletonList(4).toString(),
                                                         String.valueOf(3)),
-                                                new ExecutionResultDTO(FUNCTION_PAYLOAD,
+                                                new ExecutionResultDTO(FUNCTION_PAYLOAD_FIB,
                                                         Collections.singletonList(5).toString(),
                                                         String.valueOf(5))
                                         )
@@ -144,7 +135,7 @@ public class BehavoxScriptEngineApplicationTests {
                         .json(
                                 objectMapper.writeValueAsString(
                                         Collections.singletonList(
-                                                new ExecutionResultDTO(FUNCTION_PAYLOAD,
+                                                new ExecutionResultDTO(FUNCTION_PAYLOAD_FIB,
                                                         Collections.singletonList(3).toString(),
                                                         String.valueOf(2))
                                         )

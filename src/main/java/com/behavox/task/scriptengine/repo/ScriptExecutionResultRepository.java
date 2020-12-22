@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Repository
-public interface ScriptRepositoryResults extends CrudRepository<ExecutionResult, Integer> {
+public interface ScriptExecutionResultRepository extends CrudRepository<ExecutionResult, Integer> {
     Optional<ExecutionResult> findByHash(long hash);
 
     Collection<ExecutionResult> findAllByScriptName(String scriptName);

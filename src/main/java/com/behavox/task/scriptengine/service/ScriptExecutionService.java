@@ -2,7 +2,7 @@ package com.behavox.task.scriptengine.service;
 
 import com.behavox.task.scriptengine.dto.InputDto;
 import com.behavox.task.scriptengine.repo.ExecutionResult;
-import com.behavox.task.scriptengine.repo.ScriptRepositoryResults;
+import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,9 +17,9 @@ import java.util.Optional;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ScriptService {
+public class ScriptExecutionService {
     private final ScriptEngine engine;
-    private final ScriptRepositoryResults repositoryResults;
+    private final ScriptExecutionResultRepository repositoryResults;
 
     @Transactional
     public String eval(InputDto inputDto) throws ScriptException, NoSuchMethodException {
