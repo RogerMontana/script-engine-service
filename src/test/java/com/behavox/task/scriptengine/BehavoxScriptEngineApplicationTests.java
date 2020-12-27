@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BehavoxScriptEngineApplication.class)
 @AutoConfigureMockMvc
-public class BehavoxScriptEngineApplicationTests extends TestConstants {
+public class BehavoxScriptEngineApplicationTests extends TestConfiguration {
 
     private MockMvc mvc;
 

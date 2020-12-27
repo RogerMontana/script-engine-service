@@ -1,6 +1,6 @@
 package com.behavox.task.scriptengine;
 
-public class TestConstants {
+public class TestConfiguration {
 
     protected static final String FUNCTION_NAME_FIB = "fib";
     protected static final String FUNCTION_PAYLOAD_FIB = "def fib(n) { n < 2 ? n : fib(n - 2) + fib(n - 1) }";

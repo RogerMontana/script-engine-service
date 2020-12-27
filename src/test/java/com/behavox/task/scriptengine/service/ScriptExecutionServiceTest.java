@@ -1,6 +1,6 @@
 package com.behavox.task.scriptengine.service;
 
-import com.behavox.task.scriptengine.TestConstants;
+import com.behavox.task.scriptengine.TestConfiguration;
 import com.behavox.task.scriptengine.dto.InputDto;
 import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
 import org.junit.Ignore;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ScriptExecutionServiceTest extends TestConstants {
+public class ScriptExecutionServiceTest extends TestConfiguration {
 
     @Mock
     private ScriptExecutionResultRepository scriptExecutionResultRepository;

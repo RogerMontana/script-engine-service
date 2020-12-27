@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 5s
+  scrape_timeout: 5s
+
+rule_files:
+  - alert.yml
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets:
+          - 'prometheus:9090'
+
+  - job_name: 'Script-Engine-Service'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['script-engine-service:8080']
