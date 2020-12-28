@@ -18,12 +18,13 @@
 * H2 Console for easy interaction with db
 
 ### TECH DEBT:
+* Add UI in order to work without security workarounds
 * Add another DataSource for Prod profile like postgres
 * Beautify api  payload as list etc)
 * Move security and roles to other service (I have no plans to build monolith)
 
 #### how to run: Build and do docker-compose up
-* goto: localhost:8080 - Main app
+* goto: localhost:8080/login - Login Main app
 
 Login: admin or user, password: pass (will redirect to swagger)
 

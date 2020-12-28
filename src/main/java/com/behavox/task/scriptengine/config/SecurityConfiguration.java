@@ -46,13 +46,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                     .logout().logoutSuccessUrl("/login");
 
-            //NEED for DEMO purpose
+
             http.csrf()
                     .ignoringAntMatchers("/h2-console/**");
             http.headers()
                     .frameOptions()
                     .sameOrigin();
-            //NEED for DEMO purpose
+
             http.csrf()
                     .ignoringAntMatchers("/api/v1/engine/**");
             http.headers()
