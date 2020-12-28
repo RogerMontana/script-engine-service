@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   prometheus:
     image: prom/prometheus:v2.21.0
     ports:
@@ -9,6 +10,7 @@ services:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
     command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
+
   script-engine-service:
     image: behavox-script-engine:0.0.1-SNAPSHOT
     ports:

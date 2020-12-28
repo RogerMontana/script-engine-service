@@ -12,6 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
+/**
+ * Security Settings used spring security under the hood with roles.
+ * All roles/users/passwords stored in DB
+ */
 @Configuration
 @EnableWebSecurity
 //TODO Should be moved to separate service if we want to follow microservice architecture

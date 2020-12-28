@@ -5,6 +5,9 @@ import org.springframework.data.annotation.Transient;
 
 import java.util.Arrays;
 
+/**
+ * DTO that represents payload for given script and calculate payload hash.
+ */
 @Data
 public class InputDto {
     private final String functionName;

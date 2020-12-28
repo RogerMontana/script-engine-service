@@ -14,6 +14,10 @@ import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.Optional;
 
+/**
+ * Service that helps to execute and get results for given script.
+ * Duplicate calls - read previous DB results.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor

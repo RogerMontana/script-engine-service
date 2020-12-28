@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * ScriptEngineController API v1.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/engine")

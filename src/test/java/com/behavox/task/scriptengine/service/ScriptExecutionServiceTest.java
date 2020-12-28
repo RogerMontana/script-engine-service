@@ -31,7 +31,7 @@ public class ScriptExecutionServiceTest extends TestConfiguration {
 
 
     @Test
-    @Ignore
+    @Ignore("Ignored for now because class cast, but case is covered")
     public void shouldCalculateResults() throws ScriptException, NoSuchMethodException {
 
         Invocable inv = Mockito.mock(Invocable.class);
@@ -50,7 +50,7 @@ public class ScriptExecutionServiceTest extends TestConfiguration {
     }
 
     @Test
-    @Ignore
+    @Ignore("Ignored for now because class cast, but case is covered")
     public void shouldGetResultsFromDbIfPreviousPayloadStillSame() throws ScriptException, NoSuchMethodException {
         InputDto inputDto = new InputDto(FUNCTION_NAME_FIB,
                 FUNCTION_PAYLOAD_FIB,
@@ -58,17 +58,5 @@ public class ScriptExecutionServiceTest extends TestConfiguration {
         scriptExecutionService.eval(inputDto);
         verify(scriptExecutionResultRepository, times(1)).findByHash(inputDto.getDBHash());
         verify(scriptExecutionResultRepository, times(0)).save(any());
-    }
-
-    @Test
-    @Ignore
-    public void shouldThrowNoSuchMethodException() {
-
-    }
-
-    @Test
-    @Ignore
-    public void shouldThrowScriptExceptionException() {
-
     }
 }

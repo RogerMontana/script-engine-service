@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO that represents execution result for given script.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

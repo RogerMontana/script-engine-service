@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service that helps to get and remove results for given script.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor

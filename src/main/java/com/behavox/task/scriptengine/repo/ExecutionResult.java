@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Table that keeps all execution results.
+ */
 @Entity
 @Table(name = "EXECUTION_RESULTS")
 @Data
