@@ -142,6 +142,28 @@ public class BehavoxScriptEngineApplicationTests extends TestConfiguration {
                                 )
                         )
                 );
-        ;
+    }
+
+    @Test
+    @WithMockUser("user")
+    public void systemExit() throws Exception {
+        mvc.perform(post("/api/v1/engine/evalShellOne")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(new InputDto("",
+                        "def fib(a) {System.exit(1);}",
+                        ARGS))))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(content()
+                        .json(
+                                objectMapper.writeValueAsString(
+                                        Collections.singletonList(
+                                                new ExecutionResultDTO("System.exit(1);",
+                                                        Collections.emptyList().toString(),
+                                                        "null")
+                                        )
+                                )
+                        )
+                );;
     }
 }

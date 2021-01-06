@@ -44,16 +44,19 @@ public class ScriptExecutionService {
 
     private ExecutionResult buildCalculationResultEntity(InputDto inputDto, long hashCode, String res) {
         return new ExecutionResult(hashCode,
-                inputDto.getFunctionName(),
+                inputDto.getFunctionName().isEmpty() ? String.valueOf(hashCode) : inputDto.getFunctionName(),
                 inputDto.getFunctionPayload().trim(),
                 Arrays.toString(inputDto.getFunctionArgs()),
                 res);
     }
 
     private Object runOnEngine(InputDto inputDto) throws ScriptException, NoSuchMethodException {
+        if (inputDto.getFunctionName().isEmpty() && inputDto.getFunctionArgs().length == 0) {
+            return engine.eval(inputDto.getFunctionPayload());
+        }
         engine.eval(inputDto.getFunctionPayload());
         Invocable inv = (Invocable) engine;
-        Object result = inv.invokeFunction(inputDto.getFunctionName(), inputDto.getFunctionArgs());
+        var result = inv.invokeFunction(inputDto.getFunctionName(), inputDto.getFunctionArgs());
         log.info("results going to be calculated from Input {}, result {}", inputDto, result);
         return result;
     }
