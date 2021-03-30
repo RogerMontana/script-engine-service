@@ -1,4 +1,4 @@
-package com.behavox.task.scriptengine.dto;
+package com.expression.evaluator.engine.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

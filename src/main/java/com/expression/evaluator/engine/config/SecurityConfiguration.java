@@ -1,4 +1,4 @@
-package com.behavox.task.scriptengine.config;
+package com.expression.evaluator.engine.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,9 +1,9 @@
-package com.behavox.task.scriptengine.service;
+package com.expression.evaluator.engine.service;
 
-import com.behavox.task.scriptengine.TestConfiguration;
-import com.behavox.task.scriptengine.dto.ExecutionResultDTO;
-import com.behavox.task.scriptengine.repo.ExecutionResult;
-import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
+import com.expression.evaluator.engine.TestConfiguration;
+import com.expression.evaluator.engine.dto.ExecutionResultDTO;
+import com.expression.evaluator.engine.repo.ExecutionResult;
+import com.expression.evaluator.engine.repo.ScriptExecutionResultRepository;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;

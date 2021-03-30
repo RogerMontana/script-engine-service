@@ -1,8 +1,8 @@
-package com.behavox.task.scriptengine.service;
+package com.expression.evaluator.engine.service;
 
-import com.behavox.task.scriptengine.dto.InputDto;
-import com.behavox.task.scriptengine.repo.ExecutionResult;
-import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
+import com.expression.evaluator.engine.dto.InputDto;
+import com.expression.evaluator.engine.repo.ExecutionResult;
+import com.expression.evaluator.engine.repo.ScriptExecutionResultRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -52,10 +52,12 @@ public class ScriptExecutionService {
 
     private Object runOnEngine(InputDto inputDto) throws ScriptException, NoSuchMethodException {
         if (inputDto.getFunctionName().isEmpty() && inputDto.getFunctionArgs().length == 0) {
+            log.debug("going to execute eval method");
             return engine.eval(inputDto.getFunctionPayload());
         }
-        engine.eval(inputDto.getFunctionPayload());
+        log.debug("going to execute function method");
         Invocable inv = (Invocable) engine;
+        //engine.getName() persist name to DB after execution
         var result = inv.invokeFunction(inputDto.getFunctionName(), inputDto.getFunctionArgs());
         log.info("results going to be calculated from Input {}, result {}", inputDto, result);
         return result;

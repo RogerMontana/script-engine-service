@@ -1,8 +1,8 @@
-package com.behavox.task.scriptengine.service;
+package com.expression.evaluator.engine.service;
 
-import com.behavox.task.scriptengine.TestConfiguration;
-import com.behavox.task.scriptengine.dto.InputDto;
-import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
+import com.expression.evaluator.engine.TestConfiguration;
+import com.expression.evaluator.engine.dto.InputDto;
+import com.expression.evaluator.engine.repo.ScriptExecutionResultRepository;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

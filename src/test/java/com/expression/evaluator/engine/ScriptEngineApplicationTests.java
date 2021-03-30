@@ -1,7 +1,7 @@
-package com.behavox.task.scriptengine;
+package com.expression.evaluator.engine;
 
-import com.behavox.task.scriptengine.dto.ExecutionResultDTO;
-import com.behavox.task.scriptengine.dto.InputDto;
+import com.expression.evaluator.engine.dto.ExecutionResultDTO;
+import com.expression.evaluator.engine.dto.InputDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,9 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = BehavoxScriptEngineApplication.class)
+@SpringBootTest(classes = ScriptEngineApplication.class)
 @AutoConfigureMockMvc
-public class BehavoxScriptEngineApplicationTests extends TestConfiguration {
+public class ScriptEngineApplicationTests extends TestConfiguration {
 
     private MockMvc mvc;
 

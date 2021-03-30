@@ -8,16 +8,18 @@
         <version>2.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.behavox.task</groupId>
-    <artifactId>behavox-script-engine</artifactId>
+    <groupId>com.expression.evaluator</groupId>
+    <artifactId>service-script-engine</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>behavox-script-engine</name>
-    <description>Groovy Engine Test Task for Beahvox</description>
+    <name>service-script-engine</name>
+    <description>Groovy/JS Script Evaluator Service</description>
 
     <properties>
         <java.version>11</java.version>
         <swagger.version>2.9.2</swagger.version>
         <groovy-jsr.version>3.0.7</groovy-jsr.version>
+        <jython.version>2.7.2</jython.version>
+        <clojure.version>1.10.773</clojure.version>
     </properties>
 
     <dependencies>
@@ -41,6 +43,16 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-jsr223</artifactId>
             <version>${groovy-jsr.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.python</groupId>
+            <artifactId>jython-standalone</artifactId>
+            <version>${jython.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>clojurescript</artifactId>
+            <version>${clojure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>

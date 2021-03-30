@@ -1,8 +1,8 @@
-package com.behavox.task.scriptengine.service;
+package com.expression.evaluator.engine.service;
 
-import com.behavox.task.scriptengine.dto.InputDto;
-import com.behavox.task.scriptengine.repo.ExecutionResult;
-import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
+import com.expression.evaluator.engine.dto.InputDto;
+import com.expression.evaluator.engine.repo.ExecutionResult;
+import com.expression.evaluator.engine.repo.ScriptExecutionResultRepository;
 import groovy.lang.GroovyShell;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
-package com.behavox.task.scriptengine.service;
+package com.expression.evaluator.engine.service;
 
-import com.behavox.task.scriptengine.dto.ExecutionResultDTO;
-import com.behavox.task.scriptengine.repo.ScriptExecutionResultRepository;
+import com.expression.evaluator.engine.dto.ExecutionResultDTO;
+import com.expression.evaluator.engine.repo.ScriptExecutionResultRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

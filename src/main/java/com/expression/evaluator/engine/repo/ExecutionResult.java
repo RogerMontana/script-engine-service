@@ -1,4 +1,4 @@
-package com.behavox.task.scriptengine.repo;
+package com.expression.evaluator.engine.repo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

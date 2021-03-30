@@ -1,4 +1,4 @@
-package com.behavox.task.scriptengine.repo;
+package com.expression.evaluator.engine.repo;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
